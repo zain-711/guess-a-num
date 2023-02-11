@@ -1,19 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <script>
-        function generateSecret(){ 
-            return Math.floor(Math.random()* 100) + 1 
-        }
+      // generate the secret  29
+      //
+      // provide the upper and lower limit  1 and 100
+      // get the user's input number     2
+      // check the user's input against a secret
+      // if input is greater than the secret,
+      //   do something;
+      // else if input is less than the secret,
+      //   do some other thing; // next step should be 3 to 100
+      // else // they are equal!
+      //   print out the Win! message, and program ends.
+      //  enclosed by a loop
 
-        let secret = generateSecret()
-        console.log(secret)
+      // generate the secret
+      let secret = Math.floor(Math.random() * 100) + 1;
+      let low = 1;
+      let high = 100;
+
+      while (true) {
+        let input = parseInt(
+          prompt(`Input your guess between ${low} and ${high}.`)
+        );
+        if (isNaN(input)) {
+          alert("Please enter a number.");
+          continue;
+        }
+        if (input < low || input > high) {
+          // outside the hint range
+          alert("Please stay within the range.");
+          continue;
+        }
+        if (input > secret) {
+          high = input - 1;
+        } else if (input < secret) {
+          low = input + 1;
+        } else {
+          // input === secret
+          // you win!
+          alert("You Win!");
+          break;
+        }
+      }
     </script>
-</body>
+  </body>
 </html>
